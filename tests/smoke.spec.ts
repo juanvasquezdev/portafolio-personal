@@ -36,6 +36,20 @@ async function recorrer(page: Page) {
   await page.waitForLoadState("networkidle");
 }
 
+/** El script de Vercel Web Analytics. Lo sirve Vercel en el deploy, no Next. */
+const ANALYTICS_SCRIPT = "/_vercel/insights/script.js";
+
+// En local ese camino no existe: Next contesta su 404 en texto, el navegador
+// se niega a ejecutarlo (nosniff) y la consola se llena de errores que en
+// Vercel no pasan. Lo contesto como Vercel, un JS 200, pero vacío: el
+// <script> se pide igual desde el mismo camino (así la CSP lo sigue mirando)
+// y no manda ninguna visita a ningún lado.
+test.beforeEach(async ({ page }) => {
+  await page.route(`**${ANALYTICS_SCRIPT}`, (route) =>
+    route.fulfill({ status: 200, contentType: "text/javascript", body: "" })
+  );
+});
+
 // ---------------------------------------------------------------------------
 // Carga
 // ---------------------------------------------------------------------------
@@ -79,12 +93,22 @@ test("ninguno de los dos idiomas deja errores en la consola ni violaciones de CS
     });
   });
 
+  // Analytics tiene que salir del mismo origen y de su camino: así entra en
+  // script-src 'self'. Si alguien le pasa otro scriptSrc (o el paquete cambia
+  // de idea), acá se ve antes de tener que abrir la CSP.
+  const analytics: string[] = [];
+  page.on("request", (req) => {
+    if (/insights|vercel/.test(req.url())) analytics.push(req.url());
+  });
+
   for (const lang of LANGS) {
     await abrir(page, `/${lang}`);
     await recorrer(page);
   }
 
   expect(errores).toEqual([]);
+  const origen = new URL(page.url()).origin;
+  expect(analytics).toEqual(LANGS.map(() => `${origen}${ANALYTICS_SCRIPT}`));
 });
 
 test("en un celular la página no se desborda hacia los lados", async ({ page }) => {

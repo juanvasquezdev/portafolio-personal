@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { fontVariables } from "../fonts";
 import { LOCALES } from "@/content/types";
 import { OG_IMAGE_SIZE, SEO } from "@/content/seo";
@@ -85,7 +86,15 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(personJsonLd(lang)) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Vercel Web Analytics. En producción carga /_vercel/insights/script.js
+            y manda las visitas a /_vercel/insights/view: mismo origen, la CSP
+            no se toca. En dev el paquete pide un script de va.vercel-scripts.com
+            que la CSP bloquea, así que ahí no lo monto. Sin cookies ni eventos
+            propios (el plan Hobby no los tiene). */}
+        {process.env.NODE_ENV === "production" && <Analytics />}
+      </body>
     </html>
   );
 }

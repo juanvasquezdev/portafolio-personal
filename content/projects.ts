@@ -1,9 +1,9 @@
 /**
  * Proyectos (sistemas grandes, con su problema y su solución) y Herramientas
- * (proyectos chicos de código abierto). Textos del mockup v2.
+ * (apps chicas que corren en el navegador, con su código abierto).
  *
- * Sin `repoUrl` la tarjeta dice "Repo privado" y no enlaza a un 404; con
- * `repoUrl` pasa sola a ser un enlace al repo.
+ * En Proyectos, sin `repoUrl` la tarjeta dice "Repo privado" y no enlaza a un
+ * 404; con `repoUrl` pasa sola a ser un enlace al repo.
  */
 
 import { GITHUB_URL } from "./profile";
@@ -86,41 +86,109 @@ export const PROJECTS: Projects = {
   ],
 };
 
+// Las herramientas viven en otro repo (un monorepo, una app por carpeta) y se
+// publican juntas en un solo sitio, cada una en su ruta.
+const TOOLS_SITE = "https://juanvasquez-herramientas.vercel.app";
+const TOOLS_REPO = `${GITHUB_URL}/herramientas/tree/main/apps`;
+
 export const TOOLS: Tools = {
   eyebrow: { es: "Herramientas", en: "Tools" },
   heading: { es: "Herramientas", en: "Tools" },
   intro: {
-    es: "Proyectos pequeños y de código abierto. Úsalos, revísalos o mejóralos desde GitHub.",
-    en: "Small, open-source projects. Use them, review them or improve them on GitHub.",
+    es: "Herramientas pequeñas, cada una para una tarea concreta. Corren en el navegador, no piden cuenta y guardan los datos en tu propio equipo.",
+    en: "Small tools, each built for one specific task. They run in the browser, need no account and keep your data on your own device. Their interface is in Spanish.",
   },
-  cta: { es: "Ver en GitHub", en: "View on GitHub" },
+  cta: { es: "Ver todas las herramientas", en: "See all tools" },
+  ctaUrl: TOOLS_SITE,
+  open: {
+    label: { es: "Abrir", en: "Open" },
+    ariaLabel: { es: "Abrir {name}", en: "Open {name}" },
+  },
+  code: {
+    label: { es: "Ver código", en: "View code" },
+    ariaLabel: { es: "Ver código de {name}", en: "View code for {name}" },
+  },
 
-  // Placeholders del mockup: no salen en pantalla hasta tener `repoUrl`, y
-  // mientras ninguno lo tenga la sección no se renderiza.
   items: [
     {
-      name: { es: "[Nombre de la herramienta]", en: "[Tool name]" },
-      kind: { es: "Automatización · Python", en: "Automation · Python" },
+      name: { es: "Análisis de salto en video", en: "Jump video analysis" },
+      kind: { es: "Deporte · Visión por computador", en: "Sport · Computer vision" },
       description: {
-        es: "[Qué hace en una línea y para quién sirve.]",
-        en: "[What it does in one line and who it is for.]",
+        es: "Mide ángulos y tiempo de contacto de un salto, cuadro por cuadro. El video se procesa en el navegador y no se sube a ningún servidor.",
+        en: "Measures joint angles and ground contact time of a jump, frame by frame. The video is processed in the browser and never uploaded.",
       },
+      liveUrl: `${TOOLS_SITE}/biomecanica`,
+      repoUrl: `${TOOLS_REPO}/biomecanica`,
     },
     {
-      name: { es: "[Nombre de la herramienta]", en: "[Tool name]" },
-      kind: { es: "API REST · Node.js", en: "REST API · Node.js" },
+      name: { es: "Cotizador", en: "Quote builder" },
+      kind: { es: "Negocio", en: "Business" },
       description: {
-        es: "[Qué hace en una línea y para quién sirve.]",
-        en: "[What it does in one line and who it is for.]",
+        es: "Arma una cotización con ítems e impuesto y la exporta en PDF. Lleva el consecutivo y recuerda los datos de la empresa.",
+        en: "Builds a quote with line items and tax and exports it as a PDF. Keeps the numbering and remembers your business details.",
       },
+      liveUrl: `${TOOLS_SITE}/cotizador`,
+      repoUrl: `${TOOLS_REPO}/cotizador`,
     },
     {
-      name: { es: "[Nombre de la herramienta]", en: "[Tool name]" },
-      kind: { es: "Script · TypeScript", en: "Script · TypeScript" },
+      name: { es: "Precio y rentabilidad", en: "Pricing and margin" },
+      kind: { es: "Negocio", en: "Business" },
       description: {
-        es: "[Qué hace en una línea y para quién sirve.]",
-        en: "[What it does in one line and who it is for.]",
+        es: "Calcula a cómo vender para cubrir costos y ganar el margen que se quiere, con punto de equilibrio.",
+        en: "Works out the selling price that covers costs and hits a target margin, with the break-even point.",
       },
+      liveUrl: `${TOOLS_SITE}/rentabilidad`,
+      repoUrl: `${TOOLS_REPO}/rentabilidad`,
+    },
+    {
+      name: { es: "Registro de marcas", en: "Performance log" },
+      kind: { es: "Deporte", en: "Sport" },
+      description: {
+        es: "Lleva las marcas de un atleta por prueba, dibuja la progresión y saca un reporte en PDF.",
+        en: "Tracks an athlete's marks by event, charts the progression and produces a PDF report.",
+      },
+      liveUrl: `${TOOLS_SITE}/marcas`,
+      repoUrl: `${TOOLS_REPO}/marcas`,
+    },
+    {
+      name: { es: "Planificador de cargas", en: "Load planner" },
+      kind: { es: "Deporte", en: "Sport" },
+      description: {
+        es: "Planea la semana de fuerza y compara el volumen con la semana anterior.",
+        en: "Plans the strength week and compares its volume with the previous one.",
+      },
+      liveUrl: `${TOOLS_SITE}/cargas`,
+      repoUrl: `${TOOLS_REPO}/cargas`,
+    },
+    {
+      name: { es: "Propuesta de servicios", en: "Service proposal" },
+      kind: { es: "Negocio", en: "Business" },
+      description: {
+        es: "Deja por escrito alcance, entregables, valor y forma de pago, lista para firmar.",
+        en: "Puts scope, deliverables, price and payment terms in writing, ready to sign.",
+      },
+      liveUrl: `${TOOLS_SITE}/propuesta`,
+      repoUrl: `${TOOLS_REPO}/propuesta`,
+    },
+    {
+      name: { es: "Calendario de contenido", en: "Content calendar" },
+      kind: { es: "Contenido", en: "Content" },
+      description: {
+        es: "Organiza las publicaciones del mes y muestra qué tema y formato funcionan mejor.",
+        en: "Organises the month's posts and shows which topics and formats perform best.",
+      },
+      liveUrl: `${TOOLS_SITE}/contenido`,
+      repoUrl: `${TOOLS_REPO}/contenido`,
+    },
+    {
+      name: { es: "Control por gestos", en: "Gesture control" },
+      kind: { es: "Experimento", en: "Experiment" },
+      description: {
+        es: "Maneja un reproductor, diapositivas o una pizarra con la mano frente a la cámara.",
+        en: "Controls a media player, slides or a drawing board with hand gestures in front of the camera.",
+      },
+      liveUrl: `${TOOLS_SITE}/gestos`,
+      repoUrl: `${TOOLS_REPO}/gestos`,
     },
   ],
 };

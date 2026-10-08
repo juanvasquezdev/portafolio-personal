@@ -34,7 +34,7 @@ Sitio personal bilingüe (ES/EN) de un desarrollador full stack que también es 
 | Lighthouse móvil, `/es` y `/en` | Performance 94 · Accesibilidad 100 · Buenas prácticas 100 · SEO 100 |
 | JS inicial propio (gzip) | 10,8 KiB (presupuesto: 30 KiB) |
 | JS inicial del framework (gzip) | 126,5 KiB (react-dom + runtime de Next) |
-| Pruebas | 12 pruebas de humo con Playwright en CI, contra el build de producción |
+| Pruebas | 13 pruebas de humo con Playwright en CI, contra el build de producción |
 | Contraste | AA en tema claro y oscuro, medido también sobre las fotos |
 
 Lighthouse simula un 4G lento; el LCP real, en local, es de ~300 ms.
@@ -53,7 +53,7 @@ npm run dev                       # http://localhost:3000
 |---|---|
 | `npm run build` y `npm start` | Build de producción y servidor, como en el deploy |
 | `npm run lint` | ESLint |
-| `npm run test:e2e` | Las 12 pruebas, contra el build de producción (la primera vez: `npx playwright install chromium`) |
+| `npm run test:e2e` | Las 13 pruebas, contra el build de producción (la primera vez: `npx playwright install chromium`) |
 | `npm run og` | Regenera `public/og/`. Si cambian el nombre o los tags del hero, hay que correrlo y commitear las imágenes: no se regeneran solas |
 | `npm run screenshots` | Regenera las capturas de este README en `docs/screenshots/` |
 

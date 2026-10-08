@@ -134,17 +134,29 @@ export type Projects = SectionHeader & {
   items: Project[];
 };
 
-/** Proyecto chico de código abierto. Solo se muestra si tiene `repoUrl`, y la
- * sección entera no sale mientras no haya ninguno. */
+/** Herramienta chica que corre en el navegador. Solo se muestra si tiene
+ * `repoUrl`, y la sección entera no sale mientras no haya ninguna. */
 export type Tool = {
   name: L;
-  kind: L; // "Automatización · Python"
+  kind: L; // "Negocio", "Deporte · Visión por computador"
   description: L;
-  repoUrl?: string;
+  liveUrl?: string; // donde se abre la herramienta
+  repoUrl?: string; // donde está el código
+};
+
+/** Texto visible de un enlace y su nombre accesible. En `ariaLabel`, `{name}`
+ * se cambia por el nombre de la herramienta; tiene que empezar con `label`,
+ * que es lo que dice en voz alta quien navega por voz. */
+export type ToolLink = {
+  label: L; // "Abrir"
+  ariaLabel: L; // "Abrir {name}"
 };
 
 export type Tools = SectionHeader & {
-  cta: L; // "Ver en GitHub"
+  cta: L; // "Ver todas las herramientas"
+  ctaUrl: string;
+  open: ToolLink;
+  code: ToolLink;
   items: Tool[];
 };
 

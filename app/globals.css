@@ -827,21 +827,34 @@ main {
   align-items: flex-end;
   gap: 24px;
 }
-.tools-head .intro {
+.tools-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
   max-width: 440px;
 }
 
+/* Ocho tarjetas: 4 + 4 en escritorio. Con 3 columnas quedaba una fila de 2
+   sola. Por debajo de 1180px, a 4 columnas no entran los dos enlaces en una
+   línea, y paso a 2. En celular, una (más abajo, en el bloque de 860px). */
 .tools {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   margin: 48px 0 0;
   padding: 0;
   list-style: none;
 }
+@media (max-width: 1180px) {
+  .tools {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-/* Borde punteado: la tarjeta todavía "espera" algo; al pasar el mouse se
-   vuelve sólida. */
+/* Borde sólido: son herramientas publicadas y se pueden usar ya. Al pasar el
+   mouse, o al llegar con Tab a uno de sus enlaces, la tarjeta se marca en
+   azul. */
 .tool {
   display: flex;
   flex-direction: column;
@@ -849,18 +862,17 @@ main {
   height: 100%;
   min-height: 200px;
   padding: 24px;
-  border: 1px dashed var(--line);
+  border: 1px solid var(--line);
   border-radius: 16px;
   transition:
     border-color 0.25s,
     background-color 0.25s,
     transform 0.35s var(--ease-out);
 }
-.tool:hover {
-  border-style: solid;
+.tool:hover,
+.tool:focus-within {
   border-color: var(--accent);
   background: var(--bg2);
-  color: inherit;
   transform: translateY(-3px);
 }
 .tool-kind {
@@ -872,16 +884,32 @@ main {
   font-weight: 600;
 }
 .tool p {
-  flex-grow: 1;
   margin: 0;
   font-size: 15px;
   color: var(--muted);
 }
-.gh {
+
+/* margin-top: auto los manda al fondo: en una fila, las tarjetas miden lo
+   mismo y los enlaces quedan alineados aunque las descripciones no. */
+.tool-links {
   display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+.tool-links a,
+.tools-cta {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-height: 24px; /* área mínima de toque (WCAG 2.5.8) */
   color: var(--accent);
+}
+.tool-links a:hover,
+.tools-cta:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* ===== ATLETA ===== */

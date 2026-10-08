@@ -189,6 +189,42 @@ test("los enlaces de contacto apuntan a donde dicen y los externos abren aparte 
   expect(nuevaPestaña.sinRel).toEqual([]);
 });
 
+test("Herramientas se ve en los dos idiomas, con sus 8 tarjetas y los enlaces a donde dicen", async ({
+  page,
+}) => {
+  const sitio = "https://juanvasquez-herramientas.vercel.app";
+  const repo = "https://github.com/juanvasquezdev/herramientas/tree/main/apps";
+
+  for (const lang of LANGS) {
+    await page.goto(`/${lang}`);
+    const seccion = page.locator("#herramientas");
+    await seccion.scrollIntoViewIfNeeded();
+    await expect(seccion).toBeVisible();
+
+    await expect(seccion.locator(".tools-cta")).toHaveAttribute("href", sitio);
+
+    const tarjetas = seccion.locator(".tool");
+    await expect(tarjetas).toHaveCount(8);
+
+    // Por el nombre accesible y no por el texto: así también reviso que diga a
+    // qué herramienta lleva.
+    const primera = tarjetas.first();
+    const nombre = lang === "es" ? "Análisis de salto en video" : "Jump video analysis";
+    const [abrir, codigo] =
+      lang === "es"
+        ? [`Abrir ${nombre}`, `Ver código de ${nombre}`]
+        : [`Open ${nombre}`, `View code for ${nombre}`];
+    await expect(primera.getByRole("link", { name: abrir, exact: true })).toHaveAttribute(
+      "href",
+      `${sitio}/biomecanica`
+    );
+    await expect(primera.getByRole("link", { name: codigo, exact: true })).toHaveAttribute(
+      "href",
+      `${repo}/biomecanica`
+    );
+  }
+});
+
 // ---------------------------------------------------------------------------
 // Movimiento reducido
 // ---------------------------------------------------------------------------

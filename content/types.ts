@@ -127,10 +127,12 @@ export type Project = {
   solution: L;
   stack: string[];
   repoUrl?: string; // solo si el repo es público; sin esto se lee "Repo privado"
+  demoUrl?: string; // demo pública; con repo privado, la tarjeta lleva a la demo
 };
 
 export type Projects = SectionHeader & {
   privateRepoLabel: L;
+  demoLabel: L;
   items: Project[];
 };
 

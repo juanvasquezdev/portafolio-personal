@@ -17,6 +17,7 @@ export const PROJECTS: Projects = {
     en: "Real systems at different stages: what they solve, how they are built and where they stand.",
   },
   privateRepoLabel: { es: "Repo privado", en: "Private repo" },
+  demoLabel: { es: "Demo", en: "Demo" },
 
   items: [
     {
@@ -25,8 +26,8 @@ export const PROJECTS: Projects = {
       statusLabel: { es: "En construcción", en: "In progress" },
       live: false,
       problem: {
-        es: "La Liga Vallecaucana de Atletismo no tiene un sistema digital para atletas, competencias, resultados y rankings.",
-        en: "The Liga Vallecaucana de Atletismo has no digital system for athletes, competitions, results and rankings.",
+        es: "Una liga de atletismo necesita llevar atletas, clubes, competencias, resultados y rankings en un solo sistema, con roles y permisos para cada persona.",
+        en: "An athletics league needs athletes, clubs, competitions, results and rankings in one system, with roles and permissions for each person.",
       },
       solution: {
         es: "Plataforma propia en un monorepo: API en NestJS con Prisma y PostgreSQL, autenticación con hashing argon2id, y CI con tests de unidad, integración y E2E.",
@@ -44,27 +45,26 @@ export const PROJECTS: Projects = {
         en: "Businesses and families running inventory, sales, debts and cash on paper, with no data to make decisions.",
       },
       solution: {
-        es: "Primer eslabón de una plataforma de gestión más grande: un ERP modular al que se le suman capas de IA que analizan, controlan y automatizan, y agentes que ejecutan acciones. Cada módulo funciona solo o conectado a los demás.",
-        en: "The first link of a larger management platform: a modular ERP with AI layers that analyze, control and automate, and agents that take action. Each module works on its own or connected to the rest.",
+        es: "Primer eslabón de una plataforma de gestión más grande: un ERP multiempresa con varias sedes, inventario por sede, ventas, fiados y abonos, probado con el volumen de una cadena mediana. Las capas de IA que analizan y automatizan vienen después, sobre esta base.",
+        en: "The first link of a larger management platform: a multi-company ERP with several branches, per-branch inventory, sales, store credit and payments, load-tested at the volume of a mid-size chain. The AI layers that analyze and automate come next, on top of this base.",
       },
-      // PENDIENTE: el mockup trae un quinto chip "[confirmar stack]". No lo
-      // publico con corchetes; cuando tenga el stack completo, va acá.
-      stack: ["Node.js", "NestJS", "PostgreSQL", "Prisma"],
+      stack: ["Next.js", "NestJS", "PostgreSQL", "Prisma"],
     },
     {
-      slug: "nyx",
-      title: { es: "Nyx", en: "Nyx" },
+      slug: "nudo-lite",
+      title: { es: "Nudo Lite", en: "Nudo Lite" },
       statusLabel: { es: "En desarrollo", en: "In development" },
       live: false,
       problem: {
-        es: "Tiendas pequeñas y rurales que necesitan algo más simple que un ERP, que funcione en local.",
-        en: "Small and rural shops that need something simpler than an ERP, running locally.",
+        es: "Comercios que llevan ventas, inventario y cartera en papel y necesitan un sistema sencillo que funcione en su propio equipo.",
+        en: "Shops that track sales, stock and customer credit on paper and need a simple system that runs on their own computer.",
       },
       solution: {
-        es: "Gestión local de productos, stock, ventas, fiados con abonos y caja diaria. Funciona sin internet, en escritorio o como app en el celular.",
-        en: "Local management of products, stock, sales, store credit with partial payments and a daily cash register. Works offline, on desktop or as a phone app.",
+        es: "Ventas, inventario, cartera con abonos y caja diaria en un solo equipo, con o sin internet, en escritorio o como app en el celular. La demo se duerme si nadie la usa y tarda cerca de un minuto en abrir.",
+        en: "Sales, inventory, customer credit with partial payments and a daily cash register on a single device, online or offline, on desktop or as a phone app. The demo sleeps when nobody uses it and takes about a minute to open.",
       },
       stack: ["React", "Vite", "TypeScript", "Express", "SQLite", "PWA"],
+      demoUrl: "https://nyx-demo.onrender.com",
     },
     {
       slug: "portafolio",
@@ -76,8 +76,8 @@ export const PROJECTS: Projects = {
         en: "Showing the technical side and the athletic one in a single coherent place.",
       },
       solution: {
-        es: "Este mismo sitio: migrado de un builder no-code a Next.js y TypeScript, auditado y construido por fases.",
-        en: "This very site: moved off a no-code builder to Next.js and TypeScript, audited and built in phases.",
+        es: "Este mismo sitio: Next.js y TypeScript con CSS propio, construido por fases y auditado en rendimiento, accesibilidad y seguridad.",
+        en: "This very site: Next.js and TypeScript with hand-written CSS, built in phases and audited for performance, accessibility and security.",
       },
       // El mockup dice Tailwind, pero lo saqué en la Fase 1: el CSS es propio.
       stack: ["Next.js", "TypeScript", "CSS", "Playwright"],
@@ -175,7 +175,7 @@ export const TOOLS: Tools = {
       kind: { es: "Contenido", en: "Content" },
       description: {
         es: "Organiza las publicaciones del mes y muestra qué tema y formato funcionan mejor.",
-        en: "Organises the month's posts and shows which topics and formats perform best.",
+        en: "Organizes the month's posts and shows which topics and formats perform best.",
       },
       liveUrl: `${TOOLS_SITE}/contenido`,
       repoUrl: `${TOOLS_REPO}/contenido`,

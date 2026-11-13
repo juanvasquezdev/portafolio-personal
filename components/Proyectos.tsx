@@ -7,8 +7,9 @@ import type { Localized } from "@/lib/i18n";
  * derecha, las tarjetas pasando. Al pasar el mouse por una, las demás bajan de
  * opacidad (solo CSS).
  *
- * La tarjeta es un enlace solo si el repo es público. Con repo privado es un
- * <article> y no lleva flecha: no promete un clic que no lleva a ningún lado.
+ * La tarjeta es un enlace si el repo es público o si hay una demo pública. Sin
+ * ninguno de los dos es un <article> y no lleva flecha: no promete un clic que
+ * no lleva a ningún lado.
  */
 export default function Proyectos({ content }: { content: Localized<Projects> }) {
   return (
@@ -35,6 +36,12 @@ export default function Proyectos({ content }: { content: Localized<Projects> })
 
         <div className="proj-list">
           {content.items.map((project) => {
+            const href = project.repoUrl ?? project.demoUrl;
+            const destino = project.repoUrl
+              ? "GitHub"
+              : project.demoUrl
+                ? content.demoLabel
+                : content.privateRepoLabel;
             const body = (
               <>
                 <div className="card-top mono">
@@ -42,11 +49,11 @@ export default function Proyectos({ content }: { content: Localized<Projects> })
                     <span className={project.live ? "dot" : "dot b"} aria-hidden="true" />
                     {project.statusLabel}
                   </span>
-                  <span>{project.repoUrl ? "GitHub" : content.privateRepoLabel}</span>
+                  <span>{destino}</span>
                 </div>
                 <h3>
                   {project.title}
-                  {project.repoUrl && <ArrowUpRight />}
+                  {href && <ArrowUpRight />}
                 </h3>
                 <p className="p">{project.problem}</p>
                 <p className="s">{project.solution}</p>
@@ -61,13 +68,13 @@ export default function Proyectos({ content }: { content: Localized<Projects> })
             );
 
             const id = `proyecto-${project.slug}`;
-            return project.repoUrl ? (
+            return href ? (
               <a
                 className="card"
                 data-reveal
                 id={id}
                 key={project.slug}
-                href={project.repoUrl}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
               >

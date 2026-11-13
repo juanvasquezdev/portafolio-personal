@@ -2,7 +2,7 @@
 
 Sitio personal bilingüe (ES/EN) de un desarrollador full stack que también es atleta de salto alto de la Selección Colombia.
 
-**[PLACEHOLDER_URL](PLACEHOLDER_URL)** · [![CI](https://github.com/juanvasquezdev/portafolio-personal/actions/workflows/ci.yml/badge.svg)](https://github.com/juanvasquezdev/portafolio-personal/actions/workflows/ci.yml)
+**[juanvasquez.vercel.app](https://juanvasquez.vercel.app)** · [![CI](https://github.com/juanvasquezdev/portafolio-personal/actions/workflows/ci.yml/badge.svg)](https://github.com/juanvasquezdev/portafolio-personal/actions/workflows/ci.yml)
 
 <p align="center">
   <img src="docs/screenshots/hero-desktop.webp" alt="Hero del sitio en escritorio, tema oscuro" width="73%">

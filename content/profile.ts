@@ -13,7 +13,7 @@ export const GITHUB_USER = "juanvasquezdev";
 export const GITHUB_URL = `https://github.com/${GITHUB_USER}`;
 export const INSTAGRAM_USER = "juanvasquezhj";
 export const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_USER}`;
-export const LINKEDIN_URL = "https://www.linkedin.com/in/juan-jos%C3%A9-vasquez-giraldo-93b25b304/";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/juan-jos%C3%A9-vasquez-giraldo/";
 export const EMAIL = "juanjosevasquez1313@gmail.com";
 
 const CONTACT_LINKS: ContactLink[] = [
